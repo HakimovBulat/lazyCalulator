@@ -2,16 +2,33 @@ package main
 
 import (
 	. "github.com/HakimovBulat/lazyCalculator/utils"
+	"github.com/apaxa-go/eval"
 	"github.com/gin-gonic/gin"
 )
 
-var db = make(map[string]int)
+type Expression struct {
+	Id            int
+	StringVersion string
+	Answer        int
+	Status        string
+}
+type DataBase struct {
+	Title       string
+	Expressions []Expression
+}
+
+var id int = 1
+var db DataBase
+var mapOperatorsTime = map[string]int{
+	"-": 100, "+": 100, "*": 100, "/": 100,
+}
 
 func setupRouter() *gin.Engine {
 	SetupLogger()
 	router := gin.Default()
 	router.GET("/", inputExpression)
-	router.POST("/", listExpressions)
+	router.POST("/", createExpression)
+	router.GET("/operators", operators)
 	router.LoadHTMLGlob("templates/*")
 	return router
 }
@@ -23,11 +40,25 @@ func main() {
 }
 
 func inputExpression(c *gin.Context) {
-	c.HTML(200, "index.html", nil)
-
+	c.HTML(200, "index.html", db)
 }
-func listExpressions(c *gin.Context) {
+func createExpression(c *gin.Context) {
+	var newExpression Expression
 	math := c.PostForm("math")
 	Logger.Info(math)
-	c.HTML(200, "list.html", nil)
+	expr, err := eval.ParseString(math, "")
+	if err != nil {
+		newExpression.Status = "cancel"
+	}
+	answer, err := expr.EvalToInterface(nil)
+	if err != nil {
+		newExpression.Status = "cancel"
+	}
+	newExpression = Expression{Id: id, StringVersion: math, Answer: answer.(int), Status: "ok"}
+	db.Expressions = append(db.Expressions, newExpression)
+	id++
+	c.HTML(200, "index.html", db)
+}
+func operators(c *gin.Context) {
+	c.HTML(200, "operators.html", nil)
 }

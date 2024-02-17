@@ -3,6 +3,8 @@ module github.com/HakimovBulat/lazyCalculator
 go 1.21.0
 
 require (
+	github.com/apaxa-go/eval v0.0.0-20171223182326-1d18b251d679 // indirect
+	github.com/apaxa-go/helper v0.0.0-20180607175117-61d31b1c31c3 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
