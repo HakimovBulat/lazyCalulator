@@ -19,8 +19,31 @@
                 <label>Математическое выражение: </label> <br> <input name="math" type="text">
             </div>
         </form>
-        {{range .Expressions}}
-            <div class="alert alert-primary" role="alert">Id = {{.Id}}.<br> {{.StringVersion}} = {{.Answer}}</div>
+        {{range .}}
+        {{if eq .Status "cancel"}}
+            <div class="alert alert-danger" role="alert">
+                Id = {{.Id}}.<br> 
+                {{.StringVersion}} (неверное выражение) <br>
+                Начало работы: {{.StartDate}} <br>
+                Конец работы: {{.EndDate}}
+            </div>
+        {{end}}
+        {{if eq .Status "ok"}}    
+            <div class="alert alert-success" role="alert">
+                Id = {{.Id}}.<br>
+                {{.StringVersion}} = {{.Answer}} <br>
+                Начало работы: {{.StartDate}} <br>
+                Конец работы: {{.EndDate}}
+                </div>
+        {{end}}
+        {{if eq .Status "process"}}
+            <div class="alert alert-primary" role="alert">
+                Id = {{.Id}}. <br> 
+                {{.StringVersion}} (обрабатывается) <br>
+                Начало работы: {{.StartDate}} <br>
+                Конец работы: {{.EndDate}}
+            </div>
+        {{end}}
         {{end}}
         <form action="http://127.0.0.1:8080">
             <input type="submit" value="Обновить данные">
