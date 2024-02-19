@@ -50,6 +50,20 @@ var connectionString = "host=127.0.0.1 port=5432 user=postgres password=Love_and
 var connection *sql.DB
 
 func inputExpression(c *gin.Context) {
+	_, err := connection.Query(`CREATE TABLE IF NOT EXISTS "Expression" (
+		"id" serial NOT NULL,
+		"StringVersion" text NOT NULL,
+		"Status" text NOT NULL,
+		"Answer" text NOT NULL,
+		"StartDate" TIMESTAMP WITH TIME ZONE NOT NULL,
+		"EndDate" TIMESTAMP WITH TIME ZONE NOT NULL,
+		CONSTRAINT "Expression_pk" PRIMARY KEY ("id")
+	) WITH (
+	  OIDS=FALSE
+	);`)
+	if err != nil {
+		utils.Logger.Error(err.Error())
+	}
 	rows, err := connection.Query(`SELECT * FROM "Expression"`)
 	if err != nil {
 		utils.Logger.Error(err.Error())

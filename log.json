@@ -1,5 +1,1 @@
-{"level":"info","ts":"2024-02-18T20:31:55.150+0300","caller":"router/router.go:97","msg":"45-3256"}
-{"level":"info","ts":"2024-02-18T20:32:22.611+0300","caller":"router/router.go:97","msg":"2+2"}
-{"level":"info","ts":"2024-02-18T20:33:31.450+0300","caller":"router/router.go:97","msg":"352345-324532"}
-{"level":"info","ts":"2024-02-18T20:33:58.350+0300","caller":"router/router.go:97","msg":"8-8"}
-{"level":"info","ts":"2024-02-18T20:35:40.033+0300","caller":"router/router.go:97","msg":"2+2"}
+{"level":"info","ts":"2024-02-19T13:00:01.601+0300","caller":"router/router.go:111","msg":"5+5*5"}
