@@ -1,1 +1,2 @@
 {"level":"info","ts":"2024-02-19T13:00:01.601+0300","caller":"router/router.go:111","msg":"5+5*5"}
+{"level":"info","ts":"2024-02-21T17:15:39.577+0300","caller":"router/router.go:111","msg":"4-4"}

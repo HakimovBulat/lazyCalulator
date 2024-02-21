@@ -46,7 +46,7 @@ var mapOperatorsTime = map[string]int{
 	"*": 10,
 	"/": 10,
 }
-var connectionString = "host=127.0.0.1 port=5432 user=postgres password=Love_and_elephant42 dbname=Expression sslmode=disable"
+var connectionString = "host=0.0.0.0 port=5432 user=postgres password=Love_and_elephant42 dbname=Expression sslmode=disable"
 var connection *sql.DB
 
 func inputExpression(c *gin.Context) {
